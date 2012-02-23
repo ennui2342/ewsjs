@@ -17,6 +17,6 @@ test:
 	@sed -i.dist -e 's/ewsproxy.example.com/$(PROXY_URL)/' -e 's/me@example.com/$(TEST_EMAIL)/' -e 's/XXX/$(TEST_PASSWORD)/' index.html
 
 clean:
-	for f in index.html; do \
+	for f in index.html Services.wsdl; do \
 		mv $$f.dist $$f; \
 	done

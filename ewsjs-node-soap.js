@@ -30,7 +30,7 @@ var ews = {
 
 	respond: function(err, result) {
 		if (err) {
-			ews.res.contentType('text/plain');
+			console.log(err);
 			ews.res.send(err.stack);
 		} else {
 			ews.res.contentType('application/json');
