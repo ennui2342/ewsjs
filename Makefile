@@ -1,4 +1,5 @@
 EWS_ENDPOINT='https://owa.foo.com/EWS/Exchange.asmx'
+
 PROXY_URL='ewsproxy.example.com'
 TEST_EMAIL='me@foo.com'
 TEST_PASSWORD='secret'
@@ -11,6 +12,11 @@ deps:
 
 install:
 	@sed -e 's|https://owa.example.com/EWS/Exchange.asmx|$(EWS_ENDPOINT)|' -i '' Services.wsdl
-	@sed -e 's/ewsproxy.example.com/$(PROXY_URL)' -i '' index.html
-	@sed -e 's/me@example.com/$(TEST_EMAIL)/' -i '' index.html
-	@sed -e 's/XXX/$(TEST_PASSWORD)/' -i '' index.html
+
+test:
+	@sed -i.dist -e 's/ewsproxy.example.com/$(PROXY_URL)/' -e 's/me@example.com/$(TEST_EMAIL)/' -e 's/XXX/$(TEST_PASSWORD)/' index.html
+
+clean:
+	for f in index.html; do \
+		mv $$f.dist $$f; \
+	done
