@@ -2,7 +2,7 @@
 
 Requires expat, on ubuntu:
 
-apt-get install expat libexpat1-dev
+	apt-get install expat libexpat1-dev
 
 Edit Makefile and
 
