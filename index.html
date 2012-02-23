@@ -1,0 +1,45 @@
+<html>
+<head>
+	<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+</head>
+<body>
+	
+<script type='text/javascript'>
+(function() {
+	var password 	= 'XXX',
+		email       = 'me@example.com',
+		endpoint    = 'http://ewsproxy.example.com:8084/' + email + '?password=' + password;
+	
+	// See http://msdn.microsoft.com/en-us/library/aa580294(v=exchg.140).aspx
+	var data = {
+		"t:Mailbox": {
+			"t:Address": email
+		},
+		"t:UserOofSettings": {
+			"t:OofState": "Scheduled",
+			"t:ExternalAudience": "All",
+			"t:Duration": {
+				"t:StartTime": "2012-02-23T22:00:00",
+				"t:EndTime": "2012-02-23T23:00:00"
+			},
+			"t:InternalReply": {
+				"t:Message": "I have left the building"
+			},
+			"t:ExternalReply": {
+				"t:Message": "How may I help you?"
+			}
+		}
+	};
+	
+	$.post(endpoint, data, function(response) {
+		document.write(JSON.stringify(response) + '<br/><br/>');
+		$.getJSON(endpoint, function(response) {
+			document.write(JSON.stringify(response) + '<br/><br/>');
+		});
+	}, 'json');
+	
+})();
+</script>
+
+</body>
+</html>
